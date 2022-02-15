@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "TGGD_msdosjam", "TGGD_msdosjam\TGGD_msdosjam.vbproj", "{DCC97DFE-097F-4EF4-9F13-B99F01EDA91D}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HideseekersOfSPLORR", "HideseekersOfSPLORR\HideseekersOfSPLORR.vbproj", "{F1722B4D-4134-4D41-BE4F-51680E781053}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stuff", "Stuff", "{AA58BB34-32DD-4001-AF2C-8A76350DB9B8}"
+	ProjectSection(SolutionItems) = preProject
+		..\butler.sh = ..\butler.sh
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HideseekersOfSPLORR.Game", "HideseekersOfSPLORR.Game\HideseekersOfSPLORR.Game.vbproj", "{4E9726A6-2D3D-487F-9049-E4C4AB4E110A}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HideseekersOfSPLORR.Data", "HideseekersOfSPLORR.Data\HideseekersOfSPLORR.Data.vbproj", "{786D79DD-362F-4980-BD95-D203479DF9A7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCC97DFE-097F-4EF4-9F13-B99F01EDA91D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCC97DFE-097F-4EF4-9F13-B99F01EDA91D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCC97DFE-097F-4EF4-9F13-B99F01EDA91D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCC97DFE-097F-4EF4-9F13-B99F01EDA91D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1722B4D-4134-4D41-BE4F-51680E781053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1722B4D-4134-4D41-BE4F-51680E781053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1722B4D-4134-4D41-BE4F-51680E781053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1722B4D-4134-4D41-BE4F-51680E781053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E9726A6-2D3D-487F-9049-E4C4AB4E110A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E9726A6-2D3D-487F-9049-E4C4AB4E110A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E9726A6-2D3D-487F-9049-E4C4AB4E110A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E9726A6-2D3D-487F-9049-E4C4AB4E110A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{786D79DD-362F-4980-BD95-D203479DF9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{786D79DD-362F-4980-BD95-D203479DF9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{786D79DD-362F-4980-BD95-D203479DF9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{786D79DD-362F-4980-BD95-D203479DF9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78E49C54-4D18-4184-B9E5-6A9F196E1E5F}
+	EndGlobalSection
+EndGlobal
