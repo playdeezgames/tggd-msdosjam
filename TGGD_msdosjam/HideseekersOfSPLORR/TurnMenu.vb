@@ -5,13 +5,16 @@ Module TurnMenu
         Application.RequestStop()
     End Sub
     Private Sub TurnLeft()
-
+        PlayerCharacter.Turnleft()
+        Application.RequestStop()
     End Sub
     Private Sub TurnRight()
-
+        PlayerCharacter.TurnRight()
+        Application.RequestStop()
     End Sub
     Private Sub TurnAround()
-
+        PlayerCharacter.TurnAround()
+        Application.RequestStop()
     End Sub
     Sub Run()
         Dim cancelButton As New Button("Never mind")
@@ -24,6 +27,7 @@ Module TurnMenu
         AddHandler aroundButton.Clicked, AddressOf TurnAround
         Dim dlg As New Dialog("Turn...", cancelButton, leftButton, rightButton, aroundButton)
         Dim character = PlayerCharacter
+        dlg.Add(New Label(0, 0, $"Current Facing: {character.Facing}"))
         Application.Run(dlg)
     End Sub
 End Module

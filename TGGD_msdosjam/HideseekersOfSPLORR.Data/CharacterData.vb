@@ -19,7 +19,7 @@
         End Using
         Return LastInsertedIndex
     End Function
-    Function ReadLocationForCharacter(characterId As Long) As Long?
+    Function ReadLocationId(characterId As Long) As Long?
         Initialize()
         Using command = CreateCommand("SELECT [LocationId] FROM [Characters] WHERE [CharacterId]=@CharacterId;")
             command.Parameters.AddWithValue("@CharacterId", characterId)
@@ -41,4 +41,12 @@
             Return Nothing
         End Using
     End Function
+    Sub WriteFacing(characterId As Long, facing As Integer)
+        Initialize()
+        Using command = CreateCommand("UPDATE [Characters] SET [Facing]=@Facing WHERE [CharacterId]=@CharacterId;")
+            command.Parameters.AddWithValue("@CharacterId", characterId)
+            command.Parameters.AddWithValue("@Facing", facing)
+            command.ExecuteNonQuery()
+        End Using
+    End Sub
 End Module

@@ -9,6 +9,11 @@ Module InPlay
     End Sub
     Private Sub Turn()
         TurnMenu.Run()
+        UpdateLabels()
+    End Sub
+    Private ReadOnly facingLabel As New Label(0, 3, "")
+    Private Sub UpdateLabels()
+        facingLabel.Text = $"Facing: {PlayerCharacter.Facing} "
     End Sub
     Sub Run()
         Dim abandonButton As New Button("Abandon")
@@ -16,12 +21,11 @@ Module InPlay
         Dim turnButton As New Button("Turn...")
         AddHandler turnButton.Clicked, AddressOf Turn
         Dim dlg As New Dialog("In Play", turnButton, abandonButton)
-
-        Dim character = PlayerCharacter
-        dlg.Add(New Label(0, 0, $"CharacterId: {character.Id}"))
-        dlg.Add(New Label(0, 1, $"X: {character.Location.X}"))
-        dlg.Add(New Label(0, 2, $"Y: {character.Location.Y}"))
-        dlg.Add(New Label(0, 3, $"Facing: {character.Facing}"))
+        dlg.Add(New Label(0, 0, $"CharacterId: {PlayerCharacter.Id}"))
+        dlg.Add(New Label(0, 1, $"X: {PlayerCharacter.Location.X}"))
+        dlg.Add(New Label(0, 2, $"Y: {PlayerCharacter.Location.Y}"))
+        dlg.Add(facingLabel)
+        UpdateLabels()
         Application.Run(dlg)
     End Sub
 End Module
