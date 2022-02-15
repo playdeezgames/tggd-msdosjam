@@ -7,10 +7,15 @@ Module InPlay
             Application.RequestStop()
         End If
     End Sub
+    Private Sub Turn()
+        TurnMenu.Run()
+    End Sub
     Sub Run()
         Dim abandonButton As New Button("Abandon")
         AddHandler abandonButton.Clicked, AddressOf AbandonGame
-        Dim dlg As New Dialog("In Play", abandonButton)
+        Dim turnButton As New Button("Turn...")
+        AddHandler turnButton.Clicked, AddressOf Turn
+        Dim dlg As New Dialog("In Play", turnButton, abandonButton)
 
         Dim character = PlayerCharacter
         dlg.Add(New Label(0, 0, $"CharacterId: {character.Id}"))
