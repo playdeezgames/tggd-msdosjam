@@ -1,9 +1,8 @@
 ﻿Imports Terminal.Gui
 Imports HideseekersOfSPLORR.Game
 Module InPlay
-    Private Sub AbandonGame()
-        If MessageBox.Query("Are you sure?", "Are you sure you want to abandon the game?", "No", "Yes") = 1 Then
-            Game.Finish()
+    Private Sub Menu()
+        If GameMenu.Run() Then
             Application.RequestStop()
         End If
     End Sub
@@ -16,8 +15,8 @@ Module InPlay
         facingLabel.Text = $"Facing: {PlayerCharacter.Facing} "
     End Sub
     Sub Run()
-        Dim abandonButton As New Button("Abandon")
-        AddHandler abandonButton.Clicked, AddressOf AbandonGame
+        Dim abandonButton As New Button("Menu")
+        AddHandler abandonButton.Clicked, AddressOf Menu
         Dim turnButton As New Button("Turn...")
         AddHandler turnButton.Clicked, AddressOf Turn
         Dim dlg As New Dialog("In Play", turnButton, abandonButton)

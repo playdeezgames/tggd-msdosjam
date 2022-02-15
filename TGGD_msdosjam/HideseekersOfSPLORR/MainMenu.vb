@@ -11,12 +11,18 @@ Module MainMenu
         Game.Start()
         InPlay.Run()
     End Sub
+    Private Sub HandleKeyPress(evt As View.KeyEventEventArgs)
+        If evt.KeyEvent.Key = Key.Esc Then
+            evt.Handled = MessageBox.Query("Are you sure?", "Are you sure you want to quit?", "No", "Yes") <> 1
+        End If
+    End Sub
     Sub Run()
         Dim quitButton As New Button("Quit")
         AddHandler quitButton.Clicked, AddressOf ConfirmQuit
         Dim startButton As New Button("Start")
         AddHandler startButton.Clicked, AddressOf StartGame
         Dim dlg As New Dialog("", startButton, quitButton)
+        AddHandler dlg.KeyPress, AddressOf HandleKeyPress
         Dim title As New Label("Hideseekers of SPLORR!!")
         With title
             .X = Pos.Center()
