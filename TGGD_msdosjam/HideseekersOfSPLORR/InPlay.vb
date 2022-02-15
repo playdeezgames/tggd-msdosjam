@@ -9,6 +9,9 @@ Module InPlay
         Dim abandonButton As New Button("Abandon")
         AddHandler abandonButton.Clicked, AddressOf AbandonGame
         Dim dlg As New Dialog("In Play", abandonButton)
+
+        dlg.Add(New Label(1, 1, $"CharacterId: {Game.PlayerCharacter.Id}"))
+
         Application.Run(dlg)
     End Sub
 End Module

@@ -3,7 +3,7 @@ Public Module Store
     Private connection As SqliteConnection = Nothing
     Sub Start()
         Finish()
-        connection = New SqliteConnection("Data Source=:memory:;Version=3;New=True;")
+        connection = New SqliteConnection("Data Source=:memory:")
         connection.Open()
     End Sub
     Sub Finish()
@@ -22,4 +22,12 @@ Public Module Store
             command.ExecuteNonQuery()
         End Using
     End Sub
+    ReadOnly Property LastInsertedIndex As ULong
+        Get
+            Using command = CreateCommand("SELECT last_insert_rowid();")
+                Dim temp = command.ExecuteScalar()
+                Return CULng(temp)
+            End Using
+        End Get
+    End Property
 End Module
