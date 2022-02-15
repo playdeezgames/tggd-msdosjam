@@ -1,18 +1,22 @@
 ﻿Imports Terminal.Gui
+Imports HideseekersOfSPLORR.Game
 
 Module MainMenu
-    Private done As Boolean
     Private Sub ConfirmQuit()
         If MessageBox.Query("Are you sure?", "Are you sure you want to quit?", "No", "Yes") = 1 Then
             Application.RequestStop()
-            done = True
         End If
     End Sub
+    Private Sub StartGame()
+        Game.Start()
+        InPlay.Run()
+    End Sub
     Sub Run()
-        done = False
         Dim quitButton As New Button("Quit")
         AddHandler quitButton.Clicked, AddressOf ConfirmQuit
-        Dim dlg As New Dialog("", quitButton)
+        Dim startButton As New Button("Start")
+        AddHandler startButton.Clicked, AddressOf StartGame
+        Dim dlg As New Dialog("", startButton, quitButton)
         Dim title As New Label("Hideseekers of SPLORR!!")
         With title
             .X = Pos.Center()
@@ -26,8 +30,6 @@ Module MainMenu
         End With
         dlg.Add(subtitle)
         dlg.Add(title)
-        While Not done
-            Application.Run(dlg)
-        End While
+        Application.Run(dlg)
     End Sub
 End Module

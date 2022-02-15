@@ -5,5 +5,6 @@ Module Program
         Console.Title = "Hideseekers of SPLORR!!"
         Application.Init()
         MainMenu.Run()
+        Game.Finish()
     End Sub
 End Module
