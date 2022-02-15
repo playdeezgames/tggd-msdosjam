@@ -4,7 +4,8 @@ Public Module Game
     ReadOnly Property PlayerCharacter As Character
         Get
             If Not characterId.HasValue Then
-                characterId = CharacterData.Create()
+                Dim location = New Location(RNG.FromRange(0, 100), RNG.FromRange(0, 100))
+                characterId = CharacterData.Create(location.Id)
             End If
             Return New Character(characterId.Value)
         End Get
