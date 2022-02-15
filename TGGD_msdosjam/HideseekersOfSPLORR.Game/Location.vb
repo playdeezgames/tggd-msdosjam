@@ -1,9 +1,9 @@
 ﻿Imports HideseekersOfSPLORR.Data
 
 Public Class Location
-    Private locationId As ULong
+    Private locationId As Long
 
-    Sub New(locationId As ULong)
+    Sub New(locationId As Long)
         Me.locationId = locationId
     End Sub
     Sub New(x As Integer, y As Integer)
@@ -14,7 +14,7 @@ Public Class Location
             locationId = LocationData.Create(x, y)
         End If
     End Sub
-    ReadOnly Property Id As ULong
+    ReadOnly Property Id As Long
         Get
             Return locationId
         End Get

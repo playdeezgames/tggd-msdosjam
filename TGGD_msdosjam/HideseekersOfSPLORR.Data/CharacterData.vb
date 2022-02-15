@@ -10,27 +10,27 @@
                 FOREIGN KEY ([LocationId]) REFERENCES [Locations]([LocationId])
             );")
     End Sub
-    Function Create(locationId As ULong, facing As Integer) As ULong
+    Function Create(locationId As Long, facing As Integer) As Long
         Initialize()
-        Using command = CreateCommand("INSERT INTO [Characters]([LocationId]) VALUES(@LocationId,@Facing);")
+        Using command = CreateCommand("INSERT INTO [Characters]([LocationId],[Facing]) VALUES(@LocationId,@Facing);")
             command.Parameters.AddWithValue("@LocationId", locationId)
             command.Parameters.AddWithValue("@Facing", locationId)
             command.ExecuteNonQuery()
         End Using
         Return LastInsertedIndex
     End Function
-    Function ReadLocationForCharacter(characterId As ULong) As ULong?
+    Function ReadLocationForCharacter(characterId As Long) As Long?
         Initialize()
         Using command = CreateCommand("SELECT [LocationId] FROM [Characters] WHERE [CharacterId]=@CharacterId;")
             command.Parameters.AddWithValue("@CharacterId", characterId)
             Dim result = command.ExecuteScalar
             If result IsNot Nothing Then
-                Return CULng(result)
+                Return CLng(result)
             End If
             Return Nothing
         End Using
     End Function
-    Function ReadFacing(characterId As ULong) As Integer?
+    Function ReadFacing(characterId As Long) As Integer?
         Initialize()
         Using command = CreateCommand("SELECT [Facing] FROM [Characters] WHERE [CharacterId]=@CharacterId;")
             command.Parameters.AddWithValue("@CharacterId", characterId)

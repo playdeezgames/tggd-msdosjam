@@ -22,11 +22,11 @@ Public Module Store
             command.ExecuteNonQuery()
         End Using
     End Sub
-    ReadOnly Property LastInsertedIndex As ULong
+    ReadOnly Property LastInsertedIndex As Long
         Get
             Using command = CreateCommand("SELECT last_insert_rowid();")
                 Dim temp = command.ExecuteScalar()
-                Return CULng(temp)
+                Return CLng(temp)
             End Using
         End Get
     End Property

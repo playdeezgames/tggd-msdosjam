@@ -1,6 +1,6 @@
 Imports HideseekersOfSPLORR.Data
 Public Module Game
-    Private characterId As ULong? = Nothing
+    Private characterId As Long? = Nothing
     ReadOnly Property PlayerCharacter As Character
         Get
             If Not characterId.HasValue Then

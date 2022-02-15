@@ -16,6 +16,7 @@ Module InPlay
         dlg.Add(New Label(0, 0, $"CharacterId: {character.Id}"))
         dlg.Add(New Label(0, 1, $"X: {character.Location.X}"))
         dlg.Add(New Label(0, 2, $"Y: {character.Location.Y}"))
+        dlg.Add(New Label(0, 3, $"Facing: {character.Facing}"))
         Application.Run(dlg)
     End Sub
 End Module
