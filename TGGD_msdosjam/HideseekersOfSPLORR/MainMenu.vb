@@ -12,7 +12,20 @@ Module MainMenu
         done = False
         Dim quitButton As New Button("Quit")
         AddHandler quitButton.Clicked, AddressOf ConfirmQuit
-        Dim dlg As New Dialog("Hideseekers of SPLORR!!", quitButton)
+        Dim dlg As New Dialog("", quitButton)
+        Dim title As New Label("Hideseekers of SPLORR!!")
+        With title
+            .X = Pos.Center()
+            .Y = Pos.Center() - 1
+        End With
+        dlg.Add(title)
+        Dim subtitle As New Label("A Production of TheGrumpyGameDev")
+        With subtitle
+            .X = Pos.Center()
+            .Y = Pos.Center() + 1
+        End With
+        dlg.Add(subtitle)
+        dlg.Add(title)
         While Not done
             Application.Run(dlg)
         End While
