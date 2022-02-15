@@ -5,7 +5,7 @@ Public Module Game
         Get
             If Not characterId.HasValue Then
                 Dim location = New Location(RNG.FromRange(0, 100), RNG.FromRange(0, 100))
-                characterId = CharacterData.Create(location.Id)
+                characterId = CharacterData.Create(location.Id, RNG.FromRange(0, 4))
             End If
             Return New Character(characterId.Value)
         End Get

@@ -1,4 +1,4 @@
-﻿Public Enum Direction
+﻿Public Enum Direction As Integer
     North
     East
     South
