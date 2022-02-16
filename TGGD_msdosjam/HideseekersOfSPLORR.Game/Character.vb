@@ -20,6 +20,11 @@ Public Class Character
             Return CType(CharacterData.ReadFacing(characterId).Value, Direction)
         End Get
     End Property
+    ReadOnly Property Inventory As CharacterInventory
+        Get
+            Return New CharacterInventory(characterId)
+        End Get
+    End Property
     Private Shared Function GenerateCharacterStatistics(characteristic As Characteristic) As Integer
         Return RNG.RollDice(2, 6)
     End Function

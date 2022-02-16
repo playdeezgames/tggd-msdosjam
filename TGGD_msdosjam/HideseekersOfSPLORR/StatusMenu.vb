@@ -1,10 +1,16 @@
 ﻿Imports Terminal.Gui
 Imports HideseekersOfSPLORR.Game
 Module StatusMenu
+    Private Sub ShowInventory()
+
+    End Sub
     Sub Run()
         Dim cancelButton As New Button("Never mind")
         AddHandler cancelButton.Clicked, AddressOf Application.RequestStop
-        Dim dlg As New Dialog("Status", cancelButton)
+        Dim inventoryButton As New Button("Inventory")
+        inventoryButton.Enabled = Not PlayerCharacter.Inventory.IsEmpty
+        AddHandler inventoryButton.Clicked, AddressOf ShowInventory
+        Dim dlg As New Dialog("Status", cancelButton, inventoryButton)
         Dim characteristics = PlayerCharacter.Characteristics
         dlg.Add(New Label(1, 1, $"Strength:  {characteristics.Strength} (DM {characteristics.GetDiceModifier(Characteristic.Strength)})"))
         dlg.Add(New Label(1, 2, $"Dexterity: {characteristics.Dexterity} (DM {characteristics.GetDiceModifier(Characteristic.Dexterity)})"))

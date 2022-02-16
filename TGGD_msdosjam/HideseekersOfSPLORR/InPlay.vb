@@ -30,6 +30,9 @@ Module InPlay
     Private Sub ShowStatus()
         StatusMenu.Run()
     End Sub
+    Private Sub Interact()
+        InteractMenu.Run()
+    End Sub
     Sub Run()
         Dim menuButton As New Button("Menu")
         AddHandler menuButton.Clicked, AddressOf Menu
@@ -39,8 +42,10 @@ Module InPlay
         AddHandler moveButton.Clicked, AddressOf Move
         Dim statusButton As New Button("Status...")
         AddHandler statusButton.Clicked, AddressOf ShowStatus
+        Dim interactButton As New Button("Interact...")
+        AddHandler interactButton.Clicked, AddressOf Interact
 
-        Dim dlg As New Dialog("In Play", moveButton, turnButton, statusButton, menuButton)
+        Dim dlg As New Dialog("In Play", moveButton, turnButton, statusButton, interactButton, menuButton)
         AddHandler dlg.KeyPress, AddressOf HandleKeyEvent
         dlg.Add(New Label(0, 0, $"CharacterId: {PlayerCharacter.Id}"))
         dlg.Add(xLabel)
