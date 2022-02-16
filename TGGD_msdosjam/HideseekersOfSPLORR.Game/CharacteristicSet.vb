@@ -9,11 +9,12 @@ Public Class CharacteristicSet
     End Sub
     Public Function GetCharacteristic(characteristic As Characteristic) As Integer
         Dim value = CharacteristicData.Read(characteristicSetId, CInt(characteristic))
-        If Not value.HasValue Then
-            value = characteristicGenerator(characteristic)
-            CharacteristicData.Write(characteristicSetId, CInt(characteristic), value.Value)
+        If value Is Nothing Then
+
+            value = New Tuple(Of Integer, Integer)(characteristicGenerator(characteristic), 0)
+            CharacteristicData.Write(characteristicSetId, CInt(characteristic), value.Item1, value.Item2)
         End If
-        Return value.Value
+        Return value.Item1 + value.Item2
     End Function
     Public Function GetDiceModifier(characteristic As Characteristic) As Integer
         Select Case GetCharacteristic(characteristic)
