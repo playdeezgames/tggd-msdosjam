@@ -20,6 +20,14 @@ Public Class Character
             Return CType(CharacterData.ReadFacing(characterId).Value, Direction)
         End Get
     End Property
+    Private Shared Function GenerateCharacterStatistics(characteristic As Characteristic) As Integer
+        Return 0
+    End Function
+    ReadOnly Property Characteristics As CharacteristicSet
+        Get
+            Return New CharacteristicSet(CharacterData.ReadCharacteristicSetId(characterId).Value, AddressOf GenerateCharacterStatistics)
+        End Get
+    End Property
     Sub TurnLeft()
         TurnRight()
         TurnRight()

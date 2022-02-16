@@ -2,7 +2,6 @@
 Imports HideseekersOfSPLORR.Game
 
 Module MoveMenu
-
     Private Sub Cancel()
         Application.RequestStop()
     End Sub
