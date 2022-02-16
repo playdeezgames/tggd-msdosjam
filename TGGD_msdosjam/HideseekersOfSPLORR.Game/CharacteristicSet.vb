@@ -1,8 +1,8 @@
 ﻿Imports HideseekersOfSPLORR.Data
 
 Public Class CharacteristicSet
-    Private characteristicSetId As Long
-    Private characteristicGenerator As Func(Of Characteristic, Integer)
+    Private ReadOnly characteristicSetId As Long
+    Private ReadOnly characteristicGenerator As Func(Of Characteristic, Integer)
     Sub New(characteristicSetId As Long, characteristicGenerator As Func(Of Characteristic, Integer))
         Me.characteristicSetId = characteristicSetId
         Me.characteristicGenerator = characteristicGenerator
