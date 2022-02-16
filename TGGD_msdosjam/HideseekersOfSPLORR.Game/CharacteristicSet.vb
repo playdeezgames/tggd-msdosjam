@@ -7,13 +7,29 @@ Public Class CharacteristicSet
         Me.characteristicSetId = characteristicSetId
         Me.characteristicGenerator = characteristicGenerator
     End Sub
-    Private Function GetCharacteristic(characteristic As Characteristic) As Integer
+    Public Function GetCharacteristic(characteristic As Characteristic) As Integer
         Dim value = CharacteristicData.Read(characteristicSetId, CInt(characteristic))
         If Not value.HasValue Then
             value = characteristicGenerator(characteristic)
             CharacteristicData.Write(characteristicSetId, CInt(characteristic), value.Value)
         End If
         Return value.Value
+    End Function
+    Public Function GetDiceModifier(characteristic As Characteristic) As Integer
+        Select Case GetCharacteristic(characteristic)
+            Case 0 To 2
+                Return -2
+            Case 3 To 5
+                Return -1
+            Case 6 To 8
+                Return 0
+            Case 9 To 11
+                Return 1
+            Case 12 To 14
+                Return 2
+            Case Else
+                Throw New NotImplementedException()
+        End Select
     End Function
     ReadOnly Property Strength As Integer
         Get
