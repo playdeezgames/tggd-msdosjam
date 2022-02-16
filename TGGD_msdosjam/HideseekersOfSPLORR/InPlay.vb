@@ -11,7 +11,11 @@ Module InPlay
         UpdateLabels()
     End Sub
     Private ReadOnly facingLabel As New Label(0, 3, "")
+    Private ReadOnly xLabel As New Label(0, 1, "")
+    Private ReadOnly yLabel As New Label(0, 2, "")
     Private Sub UpdateLabels()
+        xLabel.Text = $"X: {PlayerCharacter.Location.X}   "
+        yLabel.Text = $"Y: {PlayerCharacter.Location.Y}   "
         facingLabel.Text = $"Facing: {PlayerCharacter.Facing} "
     End Sub
     Private Sub HandleKeyEvent(evt As View.KeyEventEventArgs)
@@ -19,16 +23,22 @@ Module InPlay
             evt.Handled = Not GameMenu.Run()
         End If
     End Sub
+    Private Sub Move()
+        MoveMenu.Run()
+        UpdateLabels()
+    End Sub
     Sub Run()
-        Dim abandonButton As New Button("Menu")
-        AddHandler abandonButton.Clicked, AddressOf Menu
+        Dim menuButton As New Button("Menu")
+        AddHandler menuButton.Clicked, AddressOf Menu
         Dim turnButton As New Button("Turn...")
         AddHandler turnButton.Clicked, AddressOf Turn
-        Dim dlg As New Dialog("In Play", turnButton, abandonButton)
+        Dim moveButton As New Button("Move...")
+        AddHandler moveButton.Clicked, AddressOf Move
+        Dim dlg As New Dialog("In Play", moveButton, turnButton, menuButton)
         AddHandler dlg.KeyPress, AddressOf HandleKeyEvent
         dlg.Add(New Label(0, 0, $"CharacterId: {PlayerCharacter.Id}"))
-        dlg.Add(New Label(0, 1, $"X: {PlayerCharacter.Location.X}"))
-        dlg.Add(New Label(0, 2, $"Y: {PlayerCharacter.Location.Y}"))
+        dlg.Add(xLabel)
+        dlg.Add(yLabel)
         dlg.Add(facingLabel)
         UpdateLabels()
         Application.Run(dlg)

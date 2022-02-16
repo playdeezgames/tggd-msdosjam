@@ -32,4 +32,37 @@ Public Class Character
         TurnRight()
         TurnRight()
     End Sub
+    Sub MoveAhead()
+        Dim characterX As Integer = Me.Location.X
+        Dim characterY As Integer = Me.Location.Y
+        Select Case Facing
+            Case Direction.North
+                characterY -= 1
+            Case Direction.South
+                characterY += 1
+            Case Direction.East
+                characterX += 1
+            Case Direction.West
+                characterX -= 1
+            Case Else
+                Throw New NotImplementedException()
+        End Select
+        Dim location As New Location(characterX, characterY)
+        CharacterData.WriteLocationId(characterId, location.Id)
+    End Sub
+    Sub MoveRight()
+        TurnRight()
+        MoveAhead()
+        TurnLeft()
+    End Sub
+    Sub MoveLeft()
+        TurnLeft()
+        MoveAhead()
+        TurnRight()
+    End Sub
+    Sub MoveBack()
+        TurnAround()
+        MoveAhead()
+        TurnAround()
+    End Sub
 End Class

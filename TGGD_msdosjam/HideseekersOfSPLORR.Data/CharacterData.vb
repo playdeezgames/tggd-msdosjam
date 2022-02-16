@@ -30,6 +30,14 @@
             Return Nothing
         End Using
     End Function
+    Sub WriteLocationId(characterId As Long, locationId As Long)
+        Initialize()
+        Using command = CreateCommand("UPDATE [Characters] SET [LocationId]=@LocationId WHERE [CharacterId]=@CharacterId;")
+            command.Parameters.AddWithValue("@CharacterId", characterId)
+            command.Parameters.AddWithValue("@LocationId", locationId)
+            command.ExecuteNonQuery()
+        End Using
+    End Sub
     Function ReadFacing(characterId As Long) As Integer?
         Initialize()
         Using command = CreateCommand("SELECT [Facing] FROM [Characters] WHERE [CharacterId]=@CharacterId;")
