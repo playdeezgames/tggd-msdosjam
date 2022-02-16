@@ -21,7 +21,7 @@ Public Class Character
         End Get
     End Property
     Private Shared Function GenerateCharacterStatistics(characteristic As Characteristic) As Integer
-        Return 0
+        Return RNG.RollDice(2, 6)
     End Function
     ReadOnly Property Characteristics As CharacteristicSet
         Get
