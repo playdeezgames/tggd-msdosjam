@@ -78,4 +78,7 @@ Public Class Character
         MoveAhead()
         TurnAround()
     End Sub
+    Function Forage() As Item
+        Return Nothing
+    End Function
 End Class
