@@ -11,4 +11,14 @@
         End While
         Return result
     End Function
+    Function Generate(Of TGenerated)(generator As Dictionary(Of TGenerated, Integer)) As TGenerated
+        Dim generated = FromRange(0, generator.Values.Sum())
+        For Each entry In generator
+            generated -= entry.Value
+            If generated < 0 Then
+                Return entry.Key
+            End If
+        Next
+        Throw New NotImplementedException()
+    End Function
 End Module

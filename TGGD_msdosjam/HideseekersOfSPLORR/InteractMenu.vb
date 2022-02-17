@@ -4,7 +4,7 @@ Module InteractMenu
     Private Sub Forage()
         Dim item = PlayerCharacter.Forage()
         If item IsNot Nothing Then
-
+            MessageBox.Query("Success!", $"You find {item.Description}", "Ok")
         Else
             MessageBox.Query("Fail", "You find nothing!", "Ok")
         End If

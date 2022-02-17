@@ -75,8 +75,11 @@ Public Class Character
     End Sub
     Function Forage() As Item
         If Characteristics.Check(Characteristic.Education, TaskDifficulty.Average).IsSuccess Then
-            'ask location to yield something!
-            Return Location.DetermineForagedItem()
+            Dim foragedItem = Location.DetermineForagedItem()
+            If foragedItem IsNot Nothing Then
+                Inventory.AddItem(foragedItem)
+            End If
+            Return foragedItem
         End If
         Return Nothing
     End Function

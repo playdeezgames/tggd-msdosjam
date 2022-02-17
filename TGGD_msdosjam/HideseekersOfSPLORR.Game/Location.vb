@@ -23,7 +23,19 @@ Public Class Location
             Return LocationData.ReadY(Id).Value
         End Get
     End Property
+    Private Shared itemTypeGenerator As New Dictionary(Of ItemType, Integer) From
+        {
+            {ItemType.None, 1},
+            {ItemType.Milkweed, 1},
+            {ItemType.Stick, 1},
+            {ItemType.Rock, 1}
+        }
     Function DetermineForagedItem() As Item
+        Dim itemType = RNG.Generate(itemTypeGenerator)
+        If itemType <> ItemType.None Then
+            Dim itemId = ItemData.Create(itemType)
+            Return New Item(itemId)
+        End If
         Return Nothing
     End Function
 End Class
