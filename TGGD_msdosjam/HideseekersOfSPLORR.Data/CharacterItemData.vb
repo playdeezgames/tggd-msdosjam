@@ -2,7 +2,14 @@
     Sub Initialize()
         CharacterData.Initialize()
         ItemData.Initialize()
-        ExecuteNonQuery("CREATE TABLE IF NOT EXISTS [CharacterItems]([CharacterId] INT NOT NULL,[ItemId] INT NOT NULL UNIQUE);")
+        ExecuteNonQuery(
+            "CREATE TABLE IF NOT EXISTS [CharacterItems]
+            (
+                [CharacterId] INT NOT NULL,
+                [ItemId] INT NOT NULL UNIQUE,
+                FOREIGN KEY ([CharacterId]) REFERENCES [Characters]([CharacterId]),
+                FOREIGN KEY ([ItemId]) REFERENCES [Items]([ItemId])
+            );")
     End Sub
     Sub Write(characterId As Long, itemId As Long)
         Initialize()
@@ -39,4 +46,15 @@
             command.ExecuteNonQuery()
         End Using
     End Sub
+    Function ReadForItem(itemId As Long) As Long?
+        Initialize()
+        Using command = CreateCommand("SELECT [CharacterId] FROM [CharacterItems] WHERE [ItemId]=@ItemId")
+            command.Parameters.AddWithValue("@ItemId", itemId)
+            Dim result = command.ExecuteScalar
+            If result IsNot Nothing Then
+                Return CLng(result)
+            End If
+            Return Nothing
+        End Using
+    End Function
 End Module

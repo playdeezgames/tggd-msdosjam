@@ -24,7 +24,10 @@ Public Class Item
         Return Name
     End Function
     Sub Drop()
-        CharacterItemData.ClearForItem(Id)
-        'drop it on the ground
+        Dim characterId = CharacterItemData.ReadForItem(Id)
+        If characterId.HasValue Then
+            CharacterItemData.ClearForItem(Id)
+            LocationItemData.Write(CharacterData.ReadLocationId(characterId.Value).Value, Id)
+        End If
     End Sub
 End Class
