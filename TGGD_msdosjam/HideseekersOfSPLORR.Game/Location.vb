@@ -23,4 +23,7 @@ Public Class Location
             Return LocationData.ReadY(Id).Value
         End Get
     End Property
+    Function DetermineForagedItem() As Item
+        Return Nothing
+    End Function
 End Class

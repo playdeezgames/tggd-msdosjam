@@ -74,6 +74,10 @@ Public Class Character
         TurnAround()
     End Sub
     Function Forage() As Item
+        If Characteristics.Check(Characteristic.Education, TaskDifficulty.Average).IsSuccess Then
+            'ask location to yield something!
+            Return Location.DetermineForagedItem()
+        End If
         Return Nothing
     End Function
 End Class

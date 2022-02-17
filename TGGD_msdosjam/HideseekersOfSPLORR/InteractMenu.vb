@@ -2,7 +2,12 @@
 Imports HideseekersOfSPLORR.Game
 Module InteractMenu
     Private Sub Forage()
-        PlayerCharacter.Forage()
+        Dim item = PlayerCharacter.Forage()
+        If item IsNot Nothing Then
+
+        Else
+            MessageBox.Query("Fail", "You find nothing!", "Ok")
+        End If
     End Sub
     Sub Run()
         Dim cancelButton = New Button("Never mind")

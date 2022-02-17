@@ -62,4 +62,40 @@ Public Class CharacteristicSet
             Return GetCharacteristic(Characteristic.Social)
         End Get
     End Property
+    Private Shared Function DetermineDifficultyModifier(difficulty As TaskDifficulty) As Integer
+        Select Case difficulty
+            Case TaskDifficulty.Simple
+                Return 6
+            Case TaskDifficulty.Easy
+                Return 4
+            Case TaskDifficulty.Routine
+                Return 2
+            Case TaskDifficulty.Average
+                Return 0
+            Case TaskDifficulty.Difficult
+                Return -2
+            Case TaskDifficulty.VeryDifficult
+                Return -4
+            Case Else
+                Return -6
+        End Select
+    End Function
+    Function Check(characteristic As Characteristic, difficulty As TaskDifficulty) As TaskEffect
+        Dim modifier As Integer = DetermineDifficultyModifier(difficulty)
+        Dim roll = RNG.RollDice(2, 6) + modifier + GetDiceModifier(characteristic) - 8
+        Select Case roll
+            Case < -5
+                Return TaskEffect.ExceptionalFailure
+            Case < -1
+                Return TaskEffect.AverageFailure
+            Case -1
+                Return TaskEffect.MarginalFailure
+            Case 0
+                Return TaskEffect.MarginalSuccess
+            Case 1 To 5
+                Return TaskEffect.AverageSuccess
+            Case Else
+                Return TaskEffect.ExceptionalSuccess
+        End Select
+    End Function
 End Class
