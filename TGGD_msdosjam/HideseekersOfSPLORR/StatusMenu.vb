@@ -2,7 +2,7 @@
 Imports HideseekersOfSPLORR.Game
 Module StatusMenu
     Private Sub ShowInventory()
-
+        InventoryMenu.Run()
     End Sub
     Sub Run()
         Dim cancelButton As New Button("Never mind")

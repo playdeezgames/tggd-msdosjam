@@ -7,7 +7,12 @@ Public Class CharacterInventory
     End Sub
     ReadOnly Property IsEmpty As Boolean
         Get
-            Return True
+            Return CharacterItemData.ReadCountForCharacter(characterId) = 0
+        End Get
+    End Property
+    ReadOnly Property Items As IList(Of Item)
+        Get
+            Return CharacterItemData.ReadForCharacter(characterId).Select(AddressOf Item.FromId).ToList()
         End Get
     End Property
     Sub AddItem(item As Item)
