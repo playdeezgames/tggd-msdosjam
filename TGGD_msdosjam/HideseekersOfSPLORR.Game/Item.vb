@@ -17,6 +17,11 @@ Public Class Item
             Return itemType.GetDescription
         End Get
     End Property
+    ReadOnly Property ItemType As ItemType
+        Get
+            Return CType(ItemData.ReadItemType(Id), ItemType)
+        End Get
+    End Property
     Shared Function FromId(itemId As Long) As Item
         Return New Item(itemId)
     End Function

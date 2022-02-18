@@ -5,6 +5,8 @@ Public Enum ItemType
     Stick
     Milkweed
     Rock
+    PlantFiber
+    Twine
 End Enum
 Module ItemTypeExtensions
     <Extension()>
@@ -16,6 +18,10 @@ Module ItemTypeExtensions
                 Return "rock"
             Case ItemType.Stick
                 Return "stick"
+            Case ItemType.PlantFiber
+                Return "plant fiber"
+            Case ItemType.Twine
+                Return "twine"
             Case Else
                 Throw New NotImplementedException()
         End Select
@@ -29,6 +35,10 @@ Module ItemTypeExtensions
                 Return "a rock"
             Case ItemType.Stick
                 Return "a stick"
+            Case ItemType.PlantFiber
+                Return "a strand of plant fiber"
+            Case ItemType.Twine
+                Return "a piece of twine"
             Case Else
                 Throw New NotImplementedException()
         End Select
