@@ -11,7 +11,7 @@ Module InventoryMenu
             Refresh()
         End If
     End Sub
-    Private Sub Refresh()
+    Public Sub Refresh()
         inventoryView.SetSource(CType(PlayerCharacter.Inventory.Items, IList))
         craftButton.Enabled = PlayerCharacter.Inventory.CanCraft
     End Sub

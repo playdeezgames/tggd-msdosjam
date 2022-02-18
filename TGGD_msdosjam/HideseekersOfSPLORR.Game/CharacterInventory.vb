@@ -46,4 +46,39 @@ Public Class CharacterInventory
             Return Recipes.All.Where(AddressOf CanCraftRecipe).ToList()
         End Get
     End Property
+    Function CraftRecipe(recipe As Recipe) As Boolean
+        Dim character As New Character(characterId)
+        Dim inputs As New Dictionary(Of ItemType, Integer)(recipe.Inputs)
+        Dim consumed As New List(Of Item)
+        For Each item In Items
+            If inputs.ContainsKey(item.ItemType) AndAlso inputs(item.ItemType) > 0 Then
+                inputs(item.ItemType) -= 1
+                consumed.Add(item)
+            End If
+        Next
+        For Each item In consumed
+            item.Destroy()
+        Next
+        If character.Characteristics.Check(recipe.Characteristic, recipe.Difficulty).IsSuccess Then
+            For Each output In recipe.SuccessOutputs
+                Dim count = output.Value
+                While count > 0
+                    Dim itemId = ItemData.Create(output.Key)
+                    CharacterItemData.Write(characterId, itemId)
+                    count -= 1
+                End While
+            Next
+            Return True
+        Else
+            For Each output In recipe.FailureOutputs
+                Dim count = output.Value
+                While count > 0
+                    Dim itemId = ItemData.Create(output.Key)
+                    CharacterItemData.Write(characterId, itemId)
+                    count -= 1
+                End While
+            Next
+            Return False
+        End If
+    End Function
 End Class

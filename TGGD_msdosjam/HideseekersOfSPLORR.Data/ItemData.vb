@@ -21,4 +21,13 @@
             Return Nothing
         End Using
     End Function
+    Sub Destroy(itemId As Long)
+        Initialize()
+        CharacterItemData.ClearForItem(itemId)
+        LocationItemData.ClearForItem(itemId)
+        Using command = CreateCommand("DELETE FROM [Items] WHERE [ItemId]=@ItemId;")
+            command.Parameters.AddWithValue("@ItemId", itemId)
+            command.ExecuteNonQuery()
+        End Using
+    End Sub
 End Module

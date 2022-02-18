@@ -7,8 +7,11 @@ Public Class Item
     ReadOnly Property Id As Long
     ReadOnly Property Name As String
         Get
-            Dim itemType As ItemType = CType(ItemData.ReadItemType(Id), ItemType)
-            Return itemType.GetName
+            Dim itemType = ItemData.ReadItemType(Id)
+            If itemType.HasValue Then
+                Return CType(itemType.Value, ItemType).GetName()
+            End If
+            Return ""
         End Get
     End Property
     ReadOnly Property Description As String
@@ -40,5 +43,8 @@ Public Class Item
             LocationItemData.ClearForItem(Id)
             CharacterItemData.Write(character.Id, Id)
         End If
+    End Sub
+    Sub Destroy()
+        ItemData.Destroy(Id)
     End Sub
 End Class
