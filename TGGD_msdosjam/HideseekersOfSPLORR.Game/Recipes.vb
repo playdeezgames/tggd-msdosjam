@@ -21,6 +21,13 @@
             New Dictionary(Of ItemType, Integer) From {{ItemType.Rock, 2}},
             New Dictionary(Of ItemType, Integer) From {{ItemType.SharpRock, 1}, {ItemType.Rock, 1}},
             New Dictionary(Of ItemType, Integer) From {{ItemType.Rock, 1}}
+           ),
+        New Recipe(
+            Characteristic.Strength,
+            TaskDifficulty.Routine,
+            New Dictionary(Of ItemType, Integer) From {{ItemType.SharpRock, 1}, {ItemType.Stick, 1}},
+            New Dictionary(Of ItemType, Integer) From {{ItemType.SharpRock, 1}, {ItemType.Spear, 1}},
+            New Dictionary(Of ItemType, Integer) From {{ItemType.SharpRock, 1}}
            )
         }
     ReadOnly Property All As IList(Of Recipe)

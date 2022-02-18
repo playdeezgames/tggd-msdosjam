@@ -8,6 +8,7 @@ Public Enum ItemType
     PlantFiber
     Twine
     SharpRock
+    Spear
 End Enum
 Module ItemTypeExtensions
     <Extension()>
@@ -25,6 +26,8 @@ Module ItemTypeExtensions
                 Return "twine"
             Case ItemType.SharpRock
                 Return "sharp rock"
+            Case ItemType.Spear
+                Return "spear"
             Case Else
                 Throw New NotImplementedException()
         End Select
@@ -44,6 +47,8 @@ Module ItemTypeExtensions
                 Return "a piece of twine"
             Case ItemType.SharpRock
                 Return "a sharp rock"
+            Case ItemType.Spear
+                Return "a wooden spear"
             Case Else
                 Throw New NotImplementedException()
         End Select
