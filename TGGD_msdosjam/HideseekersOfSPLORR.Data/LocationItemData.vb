@@ -39,5 +39,11 @@
             End Using
         End Using
     End Function
-
+    Sub ClearForItem(itemId As Long)
+        Initialize()
+        Using command = CreateCommand("DELETE FROM [LocationItems] WHERE [ItemId]=@ItemId;")
+            command.Parameters.AddWithValue("@ItemId", itemId)
+            command.ExecuteNonQuery()
+        End Using
+    End Sub
 End Module

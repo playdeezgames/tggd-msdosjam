@@ -30,4 +30,10 @@ Public Class Item
             LocationItemData.Write(CharacterData.ReadLocationId(characterId.Value).Value, Id)
         End If
     End Sub
+    Sub PickUp(character As Character)
+        If character IsNot Nothing Then
+            LocationItemData.ClearForItem(Id)
+            CharacterItemData.Write(character.Id, Id)
+        End If
+    End Sub
 End Class
