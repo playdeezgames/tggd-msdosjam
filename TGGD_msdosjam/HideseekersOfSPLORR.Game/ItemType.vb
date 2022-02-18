@@ -7,6 +7,7 @@ Public Enum ItemType
     Rock
     PlantFiber
     Twine
+    SharpRock
 End Enum
 Module ItemTypeExtensions
     <Extension()>
@@ -22,6 +23,8 @@ Module ItemTypeExtensions
                 Return "plant fiber"
             Case ItemType.Twine
                 Return "twine"
+            Case ItemType.SharpRock
+                Return "sharp rock"
             Case Else
                 Throw New NotImplementedException()
         End Select
@@ -39,6 +42,8 @@ Module ItemTypeExtensions
                 Return "a strand of plant fiber"
             Case ItemType.Twine
                 Return "a piece of twine"
+            Case ItemType.SharpRock
+                Return "a sharp rock"
             Case Else
                 Throw New NotImplementedException()
         End Select

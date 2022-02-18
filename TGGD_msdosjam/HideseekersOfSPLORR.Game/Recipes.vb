@@ -14,6 +14,13 @@
             New Dictionary(Of ItemType, Integer) From {{ItemType.PlantFiber, 2}},
             New Dictionary(Of ItemType, Integer) From {{ItemType.Twine, 1}},
             New Dictionary(Of ItemType, Integer) From {{ItemType.PlantFiber, 1}}
+           ),
+        New Recipe(
+            Characteristic.Strength,
+            TaskDifficulty.Average,
+            New Dictionary(Of ItemType, Integer) From {{ItemType.Rock, 2}},
+            New Dictionary(Of ItemType, Integer) From {{ItemType.SharpRock, 1}, {ItemType.Rock, 1}},
+            New Dictionary(Of ItemType, Integer) From {{ItemType.Rock, 1}}
            )
         }
     ReadOnly Property All As IList(Of Recipe)
