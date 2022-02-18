@@ -38,4 +38,9 @@ Public Class Location
         End If
         Return Nothing
     End Function
+    ReadOnly Property Inventory As LocationInventory
+        Get
+            Return New LocationInventory(Id)
+        End Get
+    End Property
 End Class
