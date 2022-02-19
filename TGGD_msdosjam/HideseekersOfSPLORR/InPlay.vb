@@ -8,13 +8,13 @@ Module InPlay
     End Sub
     Private Sub Turn()
         TurnMenu.Run()
-        UpdateLabels()
+        Refresh()
     End Sub
     Private ReadOnly xLabel As New Label(1, 2, "")
     Private ReadOnly yLabel As New Label(1, 3, "")
     Private ReadOnly facingLabel As New Label(1, 4, "")
     Private ReadOnly critterLabel As New Label(1, 5, "")
-    Private Sub UpdateLabels()
+    Private Sub Refresh()
         xLabel.Text = $"X: {PlayerCharacter.Location.X}   "
         yLabel.Text = $"Y: {PlayerCharacter.Location.Y}   "
         facingLabel.Text = $"Facing: {PlayerCharacter.Facing} "
@@ -31,13 +31,15 @@ Module InPlay
     End Sub
     Private Sub Move()
         MoveMenu.Run()
-        UpdateLabels()
+        Refresh()
     End Sub
     Private Sub ShowStatus()
         StatusMenu.Run()
+        Refresh()
     End Sub
     Private Sub Interact()
         InteractMenu.Run()
+        Refresh()
     End Sub
     Sub Run()
         Dim menuButton As New Button("Menu")
@@ -58,7 +60,7 @@ Module InPlay
         dlg.Add(yLabel)
         dlg.Add(facingLabel)
         dlg.Add(critterLabel)
-        UpdateLabels()
+        Refresh()
         Application.Run(dlg)
     End Sub
 End Module

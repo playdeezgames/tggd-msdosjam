@@ -10,6 +10,9 @@ Public Enum ItemType
     SharpRock
     Spear
     CritterCorpse
+    Hide
+    Meat
+    Knife
 End Enum
 Module ItemTypeExtensions
     <Extension()>
@@ -31,6 +34,12 @@ Module ItemTypeExtensions
                 Return "spear"
             Case ItemType.CritterCorpse
                 Return "critter corpse"
+            Case ItemType.Hide
+                Return "hide"
+            Case ItemType.Meat
+                Return "meat"
+            Case ItemType.Knife
+                Return "knife"
             Case Else
                 Throw New NotImplementedException()
         End Select
@@ -54,6 +63,12 @@ Module ItemTypeExtensions
                 Return "a wooden spear"
             Case ItemType.CritterCorpse
                 Return "the corpse of a critter"
+            Case ItemType.Hide
+                Return "the skin of a critter"
+            Case ItemType.Meat
+                Return "a hunk of meat"
+            Case ItemType.Knife
+                Return "a knife"
             Case Else
                 Throw New NotImplementedException()
         End Select
