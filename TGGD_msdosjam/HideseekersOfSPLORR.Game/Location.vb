@@ -58,4 +58,11 @@ Public Class Location
             Return CritterData.ReadCountForLocation(Id) > 0
         End Get
     End Property
+    ReadOnly Property Critters As IList(Of Critter)
+        Get
+            Return CritterData.ReadForLocation(Id).Select(Function(critterId)
+                                                              Return New Critter(critterId)
+                                                          End Function).ToList()
+        End Get
+    End Property
 End Class
