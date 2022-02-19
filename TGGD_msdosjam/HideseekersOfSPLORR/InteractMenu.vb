@@ -2,6 +2,7 @@
 Imports HideseekersOfSPLORR.Game
 Module InteractMenu
     Private groundButton As Button
+    Private critterButton As Button
     Private Sub Forage()
         Dim item = PlayerCharacter.Forage()
         If item IsNot Nothing Then
@@ -12,9 +13,14 @@ Module InteractMenu
     End Sub
     Private Sub Refresh()
         groundButton.Enabled = Not PlayerCharacter.Location.Inventory.IsEmpty
+        critterButton.Enabled = PlayerCharacter.Location.HasCritters
     End Sub
     Private Sub ShowGroundInventory()
         GroundMenu.Run()
+        Refresh()
+    End Sub
+    Private Sub ShowCritters()
+        CritterMenu.Run()
         Refresh()
     End Sub
     Sub Run()
@@ -24,7 +30,9 @@ Module InteractMenu
         AddHandler forageButton.Clicked, AddressOf Forage
         groundButton = New Button("Ground...")
         AddHandler groundButton.Clicked, AddressOf ShowGroundInventory
-        Dim dlg As New Dialog("Interact...", cancelButton, forageButton, groundButton)
+        critterButton = New Button("Critters...")
+        AddHandler critterButton.Clicked, AddressOf ShowCritters
+        Dim dlg As New Dialog("Interact...", cancelButton, forageButton, groundButton, critterButton)
         Refresh()
         Application.Run(dlg)
     End Sub
