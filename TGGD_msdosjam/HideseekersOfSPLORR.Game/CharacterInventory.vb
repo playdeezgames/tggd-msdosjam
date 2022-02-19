@@ -21,6 +21,13 @@ Public Class CharacterInventory
     Function HasItemType(itemType As ItemType) As Boolean
         Return CharacterItemData.ReadItemTypeCountForCharacter(characterId, itemType) > 0
     End Function
+    Function GetItemType(itemType As ItemType) As Item
+        Dim itemIds = CharacterItemData.ReadForItemTypeAndCharacter(characterId, itemType)
+        If itemIds.Any() Then
+            Return New Item(itemIds.First)
+        End If
+        Return Nothing
+    End Function
     ReadOnly Property CanCraft As Boolean
         Get
             Return Recipes.All.Any(Function(recipe)

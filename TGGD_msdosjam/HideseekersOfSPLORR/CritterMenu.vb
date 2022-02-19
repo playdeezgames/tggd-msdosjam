@@ -8,7 +8,16 @@ Module CritterMenu
         attackButton.Enabled = PlayerCharacter.CanAttack
     End Sub
     Public Sub Attack()
-
+        Dim source = critterListView.Source.ToList()
+        If source.Count > 0 Then
+            Dim critter = CType(source(critterListView.SelectedItem), Critter)
+            If critter.Attack(PlayerCharacter) Then
+                MessageBox.Query("Success!", "You kill it!", "Ok")
+            Else
+                MessageBox.Query("Fail!", "You missed!", "Ok")
+            End If
+            Refresh()
+        End If
     End Sub
     Sub Run()
         Dim cancelButton As New Button("Never mind")

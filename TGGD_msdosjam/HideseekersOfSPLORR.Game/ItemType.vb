@@ -9,6 +9,7 @@ Public Enum ItemType
     Twine
     SharpRock
     Spear
+    CritterCorpse
 End Enum
 Module ItemTypeExtensions
     <Extension()>
@@ -28,6 +29,8 @@ Module ItemTypeExtensions
                 Return "sharp rock"
             Case ItemType.Spear
                 Return "spear"
+            Case ItemType.CritterCorpse
+                Return "critter corpse"
             Case Else
                 Throw New NotImplementedException()
         End Select
@@ -49,6 +52,8 @@ Module ItemTypeExtensions
                 Return "a sharp rock"
             Case ItemType.Spear
                 Return "a wooden spear"
+            Case ItemType.CritterCorpse
+                Return "the corpse of a critter"
             Case Else
                 Throw New NotImplementedException()
         End Select

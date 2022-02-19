@@ -18,6 +18,13 @@
             command.ExecuteNonQuery()
         End Using
     End Sub
+    Sub Destroy(critterId As Long)
+        Initialize()
+        Using command = CreateCommand("DELETE FROM [Critters] WHERE [CritterId]=@CritterId;")
+            command.Parameters.AddWithValue("@CritterId", critterId)
+            command.ExecuteNonQuery()
+        End Using
+    End Sub
     Function ReadCritterType(critterId As Long) As Integer?
         Initialize()
         Using command = CreateCommand("SELECT [CritterType] FROM [Critters] WHERE [CritterId]=@CritterId;")

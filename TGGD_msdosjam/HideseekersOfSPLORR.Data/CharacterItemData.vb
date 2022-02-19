@@ -39,6 +39,27 @@
             End Using
         End Using
     End Function
+    Function ReadForItemTypeAndCharacter(characterId As Long, itemType As Integer) As IList(Of Long)
+        Initialize()
+        Using command = CreateCommand("SELECT 
+                ci.[ItemId] 
+            FROM 
+                [CharacterItems] ci
+                JOIN [Items] i ON ci.[ItemId]=i.[ItemId]
+            WHERE 
+                ci.[CharacterId]=@CharacterId 
+                AND i.[ItemType]=@ItemType;")
+            command.Parameters.AddWithValue("@CharacterId", characterId)
+            command.Parameters.AddWithValue("@ItemType", itemType)
+            Dim result As New List(Of Long)
+            Using reader = command.ExecuteReader
+                While reader.Read()
+                    result.Add(CLng(reader("ItemId")))
+                End While
+            End Using
+            Return result
+        End Using
+    End Function
     Function ReadItemTypeCountForCharacter(characterId As Long, itemType As Integer) As Integer
         Initialize()
         Using command = CreateCommand(
