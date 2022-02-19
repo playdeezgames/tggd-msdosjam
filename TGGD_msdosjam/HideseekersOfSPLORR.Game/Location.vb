@@ -10,6 +10,10 @@ Public Class Location
             Id = candidate.Value
         Else
             Id = LocationData.Create(x, y)
+            Dim critterType = RNG.Generate(critterTypeGenerator)
+            If critterType <> CritterType.None Then
+                CritterData.Create(critterType, Id)
+            End If
         End If
     End Sub
     ReadOnly Property Id As Long
@@ -30,9 +34,15 @@ Public Class Location
             {ItemType.Stick, 1},
             {ItemType.Rock, 1}
         }
+    Private Shared critterTypeGenerator As New Dictionary(Of CritterType, Integer) From
+        {
+            {CritterType.None, 1},
+            {CritterType.Wabbit, 1},
+            {CritterType.Duck, 1}
+        }
     Function DetermineForagedItem() As Item
         Dim itemType = RNG.Generate(itemTypeGenerator)
-        If itemType <> ItemType.None Then
+        If itemType <> itemType.None Then
             Dim itemId = ItemData.Create(itemType)
             Return New Item(itemId)
         End If
@@ -41,6 +51,11 @@ Public Class Location
     ReadOnly Property Inventory As LocationInventory
         Get
             Return New LocationInventory(Id)
+        End Get
+    End Property
+    ReadOnly Property HasCritters As Boolean
+        Get
+            Return CritterData.ReadCountForLocation(Id) > 0
         End Get
     End Property
 End Class

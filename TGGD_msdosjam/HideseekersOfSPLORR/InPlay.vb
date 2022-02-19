@@ -10,13 +10,19 @@ Module InPlay
         TurnMenu.Run()
         UpdateLabels()
     End Sub
-    Private ReadOnly facingLabel As New Label(0, 3, "")
-    Private ReadOnly xLabel As New Label(0, 1, "")
-    Private ReadOnly yLabel As New Label(0, 2, "")
+    Private ReadOnly xLabel As New Label(1, 2, "")
+    Private ReadOnly yLabel As New Label(1, 3, "")
+    Private ReadOnly facingLabel As New Label(1, 4, "")
+    Private ReadOnly critterLabel As New Label(1, 5, "")
     Private Sub UpdateLabels()
         xLabel.Text = $"X: {PlayerCharacter.Location.X}   "
         yLabel.Text = $"Y: {PlayerCharacter.Location.Y}   "
         facingLabel.Text = $"Facing: {PlayerCharacter.Facing} "
+        If PlayerCharacter.Location.HasCritters Then
+            critterLabel.Text = $"There is at least one critter here."
+        Else
+            critterLabel.Text = $"There are no critters here.        "
+        End If
     End Sub
     Private Sub HandleKeyEvent(evt As View.KeyEventEventArgs)
         If evt.KeyEvent.Key = Key.Esc Then
@@ -47,10 +53,11 @@ Module InPlay
 
         Dim dlg As New Dialog("In Play", moveButton, turnButton, statusButton, interactButton, menuButton)
         AddHandler dlg.KeyPress, AddressOf HandleKeyEvent
-        dlg.Add(New Label(0, 0, $"CharacterId: {PlayerCharacter.Id}"))
+        dlg.Add(New Label(1, 1, $"CharacterId: {PlayerCharacter.Id}"))
         dlg.Add(xLabel)
         dlg.Add(yLabel)
         dlg.Add(facingLabel)
+        dlg.Add(critterLabel)
         UpdateLabels()
         Application.Run(dlg)
     End Sub

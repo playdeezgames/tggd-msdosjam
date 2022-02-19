@@ -1,6 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices
 
 Public Enum CritterType
+    None
     Wabbit
     Duck
 End Enum
