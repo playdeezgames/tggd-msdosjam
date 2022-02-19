@@ -83,4 +83,9 @@ Public Class Character
         End If
         Return Nothing
     End Function
+    ReadOnly Property CanAttack As Boolean
+        Get
+            Return Inventory.HasItemType(ItemType.Spear)
+        End Get
+    End Property
 End Class

@@ -39,6 +39,22 @@
             End Using
         End Using
     End Function
+    Function ReadItemTypeCountForCharacter(characterId As Long, itemType As Integer) As Integer
+        Initialize()
+        Using command = CreateCommand(
+            "SELECT 
+                COUNT(ci.[ItemId]) 
+            FROM 
+                [CharacterItems] ci
+                JOIN [Items] i ON ci.[ItemId]=i.[ItemId]
+            WHERE 
+                ci.[CharacterId]=@CharacterId 
+                AND i.[ItemType]=@ItemType;")
+            command.Parameters.AddWithValue("@CharacterId", characterId)
+            command.Parameters.AddWithValue("@ItemType", itemType)
+            Return CInt(command.ExecuteScalar())
+        End Using
+    End Function
     Sub ClearForItem(itemId As Long)
         Initialize()
         Using command = CreateCommand("DELETE FROM [CharacterItems] WHERE [ItemId]=@ItemId;")

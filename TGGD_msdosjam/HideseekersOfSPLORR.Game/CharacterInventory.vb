@@ -18,6 +18,9 @@ Public Class CharacterInventory
     Sub AddItem(item As Item)
         CharacterItemData.Write(characterId, item.Id)
     End Sub
+    Function HasItemType(itemType As ItemType) As Boolean
+        Return CharacterItemData.ReadItemTypeCountForCharacter(characterId, itemType) > 0
+    End Function
     ReadOnly Property CanCraft As Boolean
         Get
             Return Recipes.All.Any(Function(recipe)
