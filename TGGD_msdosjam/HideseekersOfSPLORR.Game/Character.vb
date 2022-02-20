@@ -40,6 +40,23 @@ Public Class Character
         TurnRight()
         TurnRight()
     End Sub
+    Sub ChangeHunger(delta As Integer)
+        Dim hunger = CharacterData.ReadHunger(Id).Value + delta
+        If hunger < 0 Then
+            hunger = 0
+        End If
+        CharacterData.WriteHunger(Id, hunger)
+    End Sub
+    Private Sub Metabolize()
+        If Not Characteristics.Check(Characteristic.Endurance, TaskDifficulty.Routine).IsSuccess Then
+            ChangeHunger(1)
+        End If
+    End Sub
+    ReadOnly Property IsDead As Boolean
+        Get
+            Return Hunger >= Characteristics.Endurance * 5
+        End Get
+    End Property
     Sub MoveAhead()
         Dim characterX As Integer = Me.Location.X
         Dim characterY As Integer = Me.Location.Y
@@ -57,6 +74,7 @@ Public Class Character
         End Select
         Dim location As New Location(characterX, characterY)
         CharacterData.WriteLocationId(Id, location.Id)
+        Metabolize()
     End Sub
     Sub MoveRight()
         TurnRight()
@@ -74,6 +92,7 @@ Public Class Character
         TurnAround()
     End Sub
     Function Forage() As Item
+        Metabolize()
         If Characteristics.Check(Characteristic.Education, TaskDifficulty.Average).IsSuccess Then
             Dim foragedItem = Location.DetermineForagedItem()
             If foragedItem IsNot Nothing Then

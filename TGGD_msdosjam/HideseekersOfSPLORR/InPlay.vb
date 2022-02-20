@@ -27,6 +27,10 @@ Module InPlay
         End If
         hungerLabel.Text = $"Hunger: {PlayerCharacter.Hunger}"
         scoreLabel.Text = $"Score: {PlayerCharacter.Score}"
+        If PlayerCharacter.IsDead Then
+            MessageBox.Query("Dead!", $"You starved to death. Yer final score is {PlayerCharacter.Score}.", "Ok")
+            Application.RequestStop()
+        End If
     End Sub
     Private Sub HandleKeyEvent(evt As View.KeyEventEventArgs)
         If evt.KeyEvent.Key = Key.Esc Then
