@@ -78,6 +78,7 @@ Public Class CharacterInventory
                     count -= 1
                 End While
             Next
+            recipe.OnSuccess()
             Return True
         Else
             For Each output In recipe.FailureOutputs

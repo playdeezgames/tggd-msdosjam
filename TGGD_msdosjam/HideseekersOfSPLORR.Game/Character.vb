@@ -98,4 +98,7 @@ Public Class Character
             Return CharacterData.ReadScore(Id).Value
         End Get
     End Property
+    Sub AwardScore(delta As Integer)
+        CharacterData.WriteScore(Id, delta + Score)
+    End Sub
 End Class

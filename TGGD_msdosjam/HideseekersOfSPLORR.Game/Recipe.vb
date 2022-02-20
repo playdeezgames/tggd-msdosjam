@@ -6,12 +6,14 @@ Public Class Recipe
     ReadOnly Property Inputs As IDictionary(Of ItemType, Integer)
     ReadOnly Property SuccessOutputs As IDictionary(Of ItemType, Integer)
     ReadOnly Property FailureOutputs As IDictionary(Of ItemType, Integer)
-    Sub New(characteristic As Characteristic, difficulty As TaskDifficulty, inputs As IDictionary(Of ItemType, Integer), successOutputs As IDictionary(Of ItemType, Integer), failureOutputs As IDictionary(Of ItemType, Integer))
+    Public OnSuccess As Action
+    Sub New(characteristic As Characteristic, difficulty As TaskDifficulty, inputs As IDictionary(Of ItemType, Integer), successOutputs As IDictionary(Of ItemType, Integer), failureOutputs As IDictionary(Of ItemType, Integer), onSuccess As Action)
         Me.Characteristic = characteristic
         Me.Difficulty = difficulty
         Me.Inputs = inputs
         Me.SuccessOutputs = successOutputs
         Me.FailureOutputs = failureOutputs
+        Me.OnSuccess = onSuccess
     End Sub
     Public Overrides Function ToString() As String
         Dim builder As New StringBuilder

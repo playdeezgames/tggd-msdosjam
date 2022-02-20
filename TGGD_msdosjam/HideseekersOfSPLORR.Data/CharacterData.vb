@@ -97,4 +97,20 @@
             Return Nothing
         End Using
     End Function
+    Sub WriteScore(characterId As Long, score As Integer)
+        Initialize()
+        Using command = CreateCommand("UPDATE [Characters] SET [Score]=@Score  WHERE [CharacterId]=@CharacterId;")
+            command.Parameters.AddWithValue("@CharacterId", characterId)
+            command.Parameters.AddWithValue("@Score", score)
+            command.ExecuteNonQuery()
+        End Using
+    End Sub
+    Sub WriteHunger(characterId As Long, hunger As Integer)
+        Initialize()
+        Using command = CreateCommand("UPDATE [Characters] SET [Hunger]=@Hunger  WHERE [CharacterId]=@CharacterId;")
+            command.Parameters.AddWithValue("@CharacterId", characterId)
+            command.Parameters.AddWithValue("@Hunger", hunger)
+            command.ExecuteNonQuery()
+        End Using
+    End Sub
 End Module
