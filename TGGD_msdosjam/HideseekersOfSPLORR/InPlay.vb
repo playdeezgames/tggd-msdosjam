@@ -13,7 +13,9 @@ Module InPlay
     Private ReadOnly xLabel As New Label(1, 2, "")
     Private ReadOnly yLabel As New Label(1, 3, "")
     Private ReadOnly facingLabel As New Label(1, 4, "")
-    Private ReadOnly critterLabel As New Label(1, 5, "")
+    Private ReadOnly hungerLabel As New Label(1, 5, "")
+    Private ReadOnly scoreLabel As New Label(1, 6, "")
+    Private ReadOnly critterLabel As New Label(1, 7, "")
     Private Sub Refresh()
         xLabel.Text = $"X: {PlayerCharacter.Location.X}   "
         yLabel.Text = $"Y: {PlayerCharacter.Location.Y}   "
@@ -23,6 +25,8 @@ Module InPlay
         Else
             critterLabel.Text = $"There are no critters here.        "
         End If
+        hungerLabel.Text = $"Hunger: {PlayerCharacter.Hunger}"
+        scoreLabel.Text = $"Score: {PlayerCharacter.Score}"
     End Sub
     Private Sub HandleKeyEvent(evt As View.KeyEventEventArgs)
         If evt.KeyEvent.Key = Key.Esc Then
@@ -60,6 +64,8 @@ Module InPlay
         dlg.Add(yLabel)
         dlg.Add(facingLabel)
         dlg.Add(critterLabel)
+        dlg.Add(hungerLabel)
+        dlg.Add(scoreLabel)
         Refresh()
         Application.Run(dlg)
     End Sub

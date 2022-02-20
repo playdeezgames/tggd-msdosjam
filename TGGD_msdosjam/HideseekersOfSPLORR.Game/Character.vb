@@ -88,4 +88,14 @@ Public Class Character
             Return Inventory.HasItemType(ItemType.Spear)
         End Get
     End Property
+    ReadOnly Property Hunger As Integer
+        Get
+            Return CharacterData.ReadHunger(Id).Value
+        End Get
+    End Property
+    ReadOnly Property Score As Integer
+        Get
+            Return CharacterData.ReadScore(Id).Value
+        End Get
+    End Property
 End Class

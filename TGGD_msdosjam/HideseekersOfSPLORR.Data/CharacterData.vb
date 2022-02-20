@@ -9,6 +9,8 @@
                 [LocationId] INT NOT NULL,
                 [Facing] INT NOT NULL,
                 [CharacteristicSetId] INT NOT NULL,
+                [Hunger] INT NOT NULL DEFAULT 0,
+                [Score] INT NOT NULL DEFAULT 0,
                 FOREIGN KEY ([LocationId]) REFERENCES [Locations]([LocationId]),
                 FOREIGN KEY ([CharacteristicSetId]) REFERENCES [CharacteristicSets]([CharacteristicSetId])
             );")
@@ -73,4 +75,26 @@
             command.ExecuteNonQuery()
         End Using
     End Sub
+    Function ReadHunger(characterId As Long) As Integer?
+        Initialize()
+        Using command = CreateCommand("SELECT [Hunger] FROM [Characters] WHERE [CharacterId]=@CharacterId;")
+            command.Parameters.AddWithValue("@CharacterId", characterId)
+            Dim result = command.ExecuteScalar
+            If result IsNot Nothing Then
+                Return CInt(result)
+            End If
+            Return Nothing
+        End Using
+    End Function
+    Function ReadScore(characterId As Long) As Integer?
+        Initialize()
+        Using command = CreateCommand("SELECT [Score] FROM [Characters] WHERE [CharacterId]=@CharacterId;")
+            command.Parameters.AddWithValue("@CharacterId", characterId)
+            Dim result = command.ExecuteScalar
+            If result IsNot Nothing Then
+                Return CInt(result)
+            End If
+            Return Nothing
+        End Using
+    End Function
 End Module
