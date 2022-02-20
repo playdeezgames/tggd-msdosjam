@@ -14,6 +14,20 @@ Public Class Item
             Return ""
         End Get
     End Property
+    ReadOnly Property CanConsume As Boolean
+        Get
+            Dim itemType = ItemData.ReadItemType(Id)
+            If itemType.HasValue Then
+                Return CType(itemType.Value, ItemType).CanConsume()
+            End If
+            Return False
+        End Get
+    End Property
+    Sub Consume(character As Character)
+        If CanConsume Then
+            character.ChangeHunger(-ItemType.GetSatiety())
+        End If
+    End Sub
     ReadOnly Property Description As String
         Get
             Dim itemType As ItemType = CType(ItemData.ReadItemType(Id), ItemType)

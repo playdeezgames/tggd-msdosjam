@@ -29,6 +29,7 @@ Module InPlay
         scoreLabel.Text = $"Score: {PlayerCharacter.Score}"
         If PlayerCharacter.IsDead Then
             MessageBox.Query("Dead!", $"You starved to death. Yer final score is {PlayerCharacter.Score}.", "Ok")
+            Game.Finish()
             Application.RequestStop()
         End If
     End Sub

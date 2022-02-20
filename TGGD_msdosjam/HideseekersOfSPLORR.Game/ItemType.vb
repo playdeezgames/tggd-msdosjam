@@ -73,4 +73,17 @@ Module ItemTypeExtensions
                 Throw New NotImplementedException()
         End Select
     End Function
+    <Extension()>
+    Function CanConsume(itemType As ItemType) As Boolean
+        Return itemType = ItemType.Meat
+    End Function
+    <Extension()>
+    Function GetSatiety(itemType As ItemType) As Integer
+        Select Case itemType
+            Case ItemType.Meat
+                Return 10
+            Case Else
+                Return 0
+        End Select
+    End Function
 End Module
